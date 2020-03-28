@@ -17,7 +17,7 @@ print_style () {
     STARTCOLOR="\033[$COLOR";
     ENDCOLOR="\033[0m";
 
-    printf "$STARTCOLOR%b$ENDCOLOR" "$1";
+    printf "$STARTCOLOR%b$ENDCOLOR" "$1\n";
 }
 
 abort() {

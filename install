@@ -62,10 +62,7 @@ chsh -s $(which fish)
 
 # Install Oh-my-fish
 print_style "Installing OMF" "info"
-curl -L https://get.oh-my.fish | fish
-
-# Bobthefish theme
-omf install bobthefish
+curl -L https://get.oh-my.fish | fish | omf install bobthefish | exit
 
 # Ruby and colorls
 print_style "Installing Ruby and Colorls" "info"
@@ -73,7 +70,6 @@ rbenv install 2.7.0
 rbenv global 2.7.0
 gem install colorls
 rbenv rehash
-rehash
 source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Portainer

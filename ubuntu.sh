@@ -25,6 +25,18 @@ sudo apt dist-upgrade -y
 print_style "Installing packages" "info"
 sudo apt install git git-flow fish code neovim docker-ce docker-ce-cli containerd.io docker-compose -y
 
+sudo systemctl start docker
+sudo systemctl enable docker
+
+print_style "Installing Ruby and rbenv" "info"
+rm -rf ~/.rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+
 print_style "Installing Nerd Fonts" "info"
 mkdir -p ~/.fonts
 ln -s fonts/NerdFonts ~/.fonts/

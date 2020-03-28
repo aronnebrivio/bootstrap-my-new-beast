@@ -1,7 +1,6 @@
 # Bootstrap my new beast
 
-After cloning this repo, run `./install` to automatically set up the development
-environment.
+After cloning this repo, run `./install` to automatically set up the development environment.
 
 
 ## Content

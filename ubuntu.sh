@@ -26,5 +26,6 @@ print_style "Installing packages" "info"
 sudo apt install git git-flow fish code neovim docker-ce docker-ce-cli containerd.io docker-compose -y
 
 print_style "Installing Nerd Fonts" "info"
+mkdir -p ~/.fonts
 ln -s fonts/NerdFonts ~/.fonts/
 fc-cache -f -v

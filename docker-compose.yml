@@ -1,0 +1,8 @@
+version: "3.5"
+services:
+  ubuntu-test:
+    build:
+      context: "."
+    #image: aronnebrivio/ubuntu-test
+    container_name: ubuntu-test
+    command: "tail -F anything"

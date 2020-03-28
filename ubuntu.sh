@@ -6,7 +6,8 @@ sudo apt-get install \
     curl \
     wget \
     gnupg-agent \
-    software-properties-common -y
+    software-properties-common \
+    build-essential -y
 
 print_style "Upgrading packages" "info"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -30,6 +31,7 @@ sudo systemctl enable docker
 
 print_style "Installing Ruby and rbenv" "info"
 rm -rf ~/.rbenv
+rm ~/.bashrc
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc

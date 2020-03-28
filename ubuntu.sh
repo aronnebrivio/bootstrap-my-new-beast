@@ -7,7 +7,8 @@ sudo apt-get install \
     wget \
     gnupg-agent \
     software-properties-common \
-    build-essential -y
+    build-essential \
+    systemd -y
 
 print_style "Upgrading packages" "info"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

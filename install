@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+######## Functions ########
+print_style () {
+    if [ "$2" == "info" ] ; then
+        COLOR="96m";
+    elif [ "$2" == "success" ] ; then
+        COLOR="92m";
+    elif [ "$2" == "warning" ] ; then
+        COLOR="93m";
+    elif [ "$2" == "danger" ] ; then
+        COLOR="91m";
+    else # default color
+        COLOR="0m";
+    fi
+
+    STARTCOLOR="\033[$COLOR";
+    ENDCOLOR="\033[0m";
+
+    printf "$STARTCOLOR%b$ENDCOLOR" "$1";
+}
+
+abort() {
+  print_style "$1" "danger"
+  exit 1
+}
+
+######## Check for root ########
+if [[ "$UID" == "0" ]]; then
+  abort "Don't run this as root!"
+fi
+
+######## Script ########
+PS3='Select an option and press Enter: '
+options=("Debian/Ubuntu" "MacOS" "Quit")
+select opt in "${options[@]}"
+do
+  case $opt in
+        "Debian/Ubuntu")
+            echo ""
+            source ubuntu.sh
+            break
+            ;;
+        "MacOS")
+            echo ""
+            source macos.sh
+            break
+            ;;
+        "Quit")
+            echo "Bye"
+            exit 0
+            ;;
+        *)
+            echo "Invalid option"
+            ;;
+  esac
+done
+
+# Change default shell to fish
+print_style "Switching to fish as default shell" "info"
+chsh -s $(which fish)
+
+# Install Oh-my-fish
+print_style "Installing OMF" "info"
+curl -L https://get.oh-my.fish | fish
+
+# Bobthefish theme
+omf install bobthefish
+
+# Ruby and colorls
+print_style "Installing Ruby and Colorls" "info"
+rbenv install 2.7.0
+rbenv global 2.7.0
+gem install colorls
+rbenv rehash
+rehash
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Portainer
+print_style "Installing Portainer" "info"
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9999:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+# THE END!
+print_style "All done!" "success"
+exit 0

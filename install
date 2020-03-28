@@ -63,6 +63,7 @@ chsh -s $(which fish)
 # Install Oh-my-fish
 print_style "Installing OMF" "info"
 curl -L github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > omf_install
+chmod +x omf_install
 ./omf_install --noninteractive
 rm omf_install
 

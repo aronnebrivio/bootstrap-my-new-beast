@@ -8,7 +8,9 @@ sudo apt-get install \
     gnupg-agent \
     software-properties-common \
     build-essential \
-    systemd -y
+    openssl \
+    libssl-dev \
+    zlib1g-dev -y
 
 print_style "Upgrading packages" "info"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -27,8 +29,7 @@ sudo apt dist-upgrade -y
 print_style "Installing packages" "info"
 sudo apt install git git-flow fish code neovim docker-ce docker-ce-cli containerd.io docker-compose -y
 
-sudo systemctl start docker
-sudo systemctl enable docker
+sudo service docker start
 
 print_style "Installing Ruby and rbenv" "info"
 rm -rf ~/.rbenv

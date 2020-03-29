@@ -14,8 +14,10 @@ General
 - oh-my-fish
 - neovim
 - colorls
-- VScode
+- VSCode
 - some [nerd fonts](https://github.com/ryanoasis/nerd-fonts)
+- ~~[portainer](https://www.portainer.io/)~~
+- [.dotfiles](https://github.com/aronnebrivio/dotfiles)
 
 Linux (Debian/Ubuntu flavoured)
 - docker
@@ -42,6 +44,8 @@ cd bootstrap-my-new-beast
 
 The password for the default user `testuser` is `password` (*you don't say?*), needed for **sudo** privileges.
 You'll have to choose *option 1* since is an Ubuntu image.
+
+**Did you break something?** Just `docker-compose down` and start again.
 
 ## Todo
 - [ ] `bobthefish` shell theme

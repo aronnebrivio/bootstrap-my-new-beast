@@ -56,6 +56,10 @@ do
   esac
 done
 
+# Load submodules
+print_style "Load submodules"
+git submodule update --init --recursive
+
 # Change default shell to fish
 print_style "Switching to fish as default shell" "info"
 chsh -s $(which fish)
@@ -75,10 +79,10 @@ gem install colorls
 rbenv rehash
 source $(dirname $(gem which colorls))/tab_complete.sh
 
-# Portainer
-print_style "Installing Portainer" "info"
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9999:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+# Portainer TODO: check
+# print_style "Installing Portainer" "info"
+# docker volume create portainer_data
+# docker run -d -p 8000:8000 -p 9999:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
 # Dotfiles
 source dotfiles/install

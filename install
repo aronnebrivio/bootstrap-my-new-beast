@@ -1,34 +1,7 @@
 #!/usr/bin/env bash
 
-######## Functions ########
-print_style () {
-    if [ "$2" == "info" ] ; then
-        COLOR="96m";
-    elif [ "$2" == "success" ] ; then
-        COLOR="92m";
-    elif [ "$2" == "warning" ] ; then
-        COLOR="93m";
-    elif [ "$2" == "danger" ] ; then
-        COLOR="91m";
-    else # default color
-        COLOR="0m";
-    fi
-
-    STARTCOLOR="\033[$COLOR";
-    ENDCOLOR="\033[0m";
-
-    printf "$STARTCOLOR%b$ENDCOLOR" "$1\n";
-}
-
-abort() {
-  print_style "$1" "danger"
-  exit 1
-}
-
-######## Check for root ########
-if [[ "$UID" == "0" ]]; then
-  abort "Don't run this as root!"
-fi
+source scripts/utilities.sh
+source scripts/functions.sh
 
 ######## Script ########
 PS3='Select an option and press Enter: '
@@ -38,12 +11,12 @@ do
   case $opt in
         "Debian/Ubuntu")
             echo ""
-            source ubuntu.sh
+            source scripts/ubuntu.sh
             break
             ;;
         "MacOS")
             echo ""
-            source macos.sh
+            source scripts/macos.sh
             break
             ;;
         "Quit")
@@ -57,32 +30,21 @@ do
 done
 
 # Load submodules
-print_style "Load submodules"
+print_style "Loading submodules" "info"
 git submodule update --init --recursive
 
 # Change default shell to fish
-print_style "Switching to fish as default shell" "info"
-chsh -s $(which fish)
+switchToFish
 
 # Install Oh-my-fish
-print_style "Installing OMF" "info"
-rm -rf ~/.local/share/omf
-curl -L github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > omf_install
-chmod +x omf_install
-./omf_install --noninteractive
+installOMF
 
 # Ruby and colorls
-print_style "Installing Ruby and Colorls" "info"
-rbenv install 2.7.0
-rbenv global 2.7.0
-gem install colorls
-rbenv rehash
-source $(dirname $(gem which colorls))/tab_complete.sh
+installRubyColorls
 
-# Portainer TODO: check
-# print_style "Installing Portainer" "info"
-# docker volume create portainer_data
-# docker run -d -p 8000:8000 -p 9999:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+# Portainer
+# TODO: check
+# installPortainer
 
 # Dotfiles
 source dotfiles/install

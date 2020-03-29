@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    wget \
-    gnupg-agent \
-    software-properties-common \
-    build-essential \
-    openssl \
-    libssl-dev \
-    zlib1g-dev -y
+sudo apt install apt-transport-https ca-certificates curl wget gnupg-agent software-properties-common build-essential openssl libssl-dev zlib1g-dev -y
 
 print_style "Upgrading packages" "info"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

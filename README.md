@@ -1,4 +1,6 @@
 # 🚀 Bootstrap my new beast
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faronnebrivio%2Fbootstrap-my-new-beast.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Faronnebrivio%2Fbootstrap-my-new-beast?ref=badge_shield)
+
 > I made this repository just because I'm too lazy to install and configure every application every time I change my PC / OS.
 
 Running this script will setup a fresh machine with some stuff like [fish shell](https://fishshell.com/), [Docker](https://www.docker.com/) and [VSCode](https://code.visualstudio.com/) (see [section below](#stuff)). Maybe you want to take a look to my [.dotfiles](https://github.com/aronnebrivio/dotfiles) too!
@@ -51,3 +53,7 @@ You'll have to choose *option 1* since is an Ubuntu image.
 - [ ] `bobthefish` shell theme
 - [ ] Docker for MacOS
 - [ ] ~~fix all the mess~~ *Sorry, I won't*
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faronnebrivio%2Fbootstrap-my-new-beast.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faronnebrivio%2Fbootstrap-my-new-beast?ref=badge_large)
